@@ -3,3 +3,11 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+hello: #nom de route
+    path: /sayhello #url
+    controller: App\Controller\StudentController::SayHello #La fonction
+
+i:
+    path: /testI
+    controller: App\Controller\StudentController::test

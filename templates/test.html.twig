@@ -1,0 +1,48 @@
+<head>
+<link href="{{asset('css/test.css')}}" rel="stylesheet">
+{# <script src="{{asset(lienverslefichierjs)}}"> #}
+</head>
+<h1 class='text'>{{m}}</h1>
+
+<ul>
+<li>{{s.id}}</li>
+<li>{{s.name}}</li>
+</ul>
+
+{% for e in tab %}
+{{e}}
+{% endfor %}
+
+{% set somme = 0 %}
+{% if students is empty %}
+<p>Pas d'element</p>
+{% else %}
+<table>
+    <tr>
+        <th>Image</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Moyenne</th>
+    </tr>
+    {% for s in students %}
+    {% set somme = somme + s.moyenne %}
+    <tr>
+        <td><img src="{{asset(s.image)}}"></td>
+        <td>{{s.id}}</td>
+        <td>{{s.name | upper}}</td>
+        <td>{{s.moyenne}}
+    </tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+{% set moyenneG = somme / students|length %}
+Somme : {{somme}}
+Moyenne G :
+{{moyenneG}}
+
+{% if 5 in tab %}
+    <p>5 exist </p>
+{% else %}
+    <p> 5 not exist</p>
+{% endif %} 
