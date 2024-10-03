@@ -9,22 +9,30 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class StudentController extends AbstractController{
 
-    
-    public function SayHello(){
-        $msg = 'Hello 3A11';
-        $student = array('id'=>1,'name'=>'Flen');
-        $students = array(
+    public $students = array(
             array('id'=>1,'name'=>'Flen','moyenne'=>14,'image'=>'images/user1.jpg'),
             array('id'=>2,'name'=>'Ben Flen','moyenne'=>19,'image'=>'images/user2.png'),
             array('id'=>3,'name'=>'falten','moyenne'=>8,'image'=>'images/user3.png')
         );
+    public function SayHello(){
+        $msg = 'Hello 3A11';
+        $student = array('id'=>1,'name'=>'Flen');
+        
         $tab = [1,2,3,4];
         // return new Response("Bonjour 3A11");
         return $this->render('test.html.twig',[
             'm'=>$msg,
             's'=>$student,
-            'students'=>$students,
+            'students'=>$this->students,
             'tab'=>$tab
+        ]);
+    }
+
+    #[Route('/student/details/{id}',name:'app_student_details')]
+    public function studentDetails($id){
+        $student = $this->students[$id-1];
+        return $this->render('details.html.twig',[
+            's'=>$student
         ]);
     }
 

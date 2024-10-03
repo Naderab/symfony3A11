@@ -30,7 +30,8 @@
         <td><img src="{{asset(s.image)}}"></td>
         <td>{{s.id}}</td>
         <td>{{s.name | upper}}</td>
-        <td>{{s.moyenne}}
+        <td>{{s.moyenne}}</td>
+        <td><a href="{{path('app_student_details',{'id':s.id})}}"> vers details </a></td>
     </tr>
     {% endfor %}
 </table>
