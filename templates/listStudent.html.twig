@@ -1,0 +1,14 @@
+<table>
+    <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Moyenne</th>
+</tr>
+{% for s in students %}
+<tr>
+    <td>{{s.id}}</td>
+    <td>{{s.name}}</td>
+    <td>{{s.moyenne}}</td>
+</tr>
+{% endfor %}
+</table>

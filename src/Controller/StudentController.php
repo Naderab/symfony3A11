@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Repository\StudentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,16 @@ class StudentController extends AbstractController{
             array('id'=>2,'name'=>'Ben Flen','moyenne'=>19,'image'=>'images/user2.png'),
             array('id'=>3,'name'=>'falten','moyenne'=>8,'image'=>'images/user3.png')
         );
+
+        #[Route('/student/getAll',name:'app_student_all')]
+        public function getAll(StudentRepository $repo){
+            $students  = $repo->findAll();
+
+            return $this->render('listStudent.html.twig',[
+                'students'=>$students
+            ]);
+        }
+
     public function SayHello(){
         $msg = 'Hello 3A11';
         $student = array('id'=>1,'name'=>'Flen');
