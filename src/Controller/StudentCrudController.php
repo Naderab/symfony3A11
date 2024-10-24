@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Author;
+use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -19,14 +21,18 @@ class StudentCrudController extends AbstractController
     }
 
     #[Route('/author/add',name:'app_author_add')]
-    public function addAuthor(EntityManagerInterface $em){
+    public function addAuthor(EntityManagerInterface $em,Request $req){
         $author = new Author();
-        $author->setName("author 1");
-        $author->setEmail("author1@gmail.com");
-
+        $form = $this->createForm(AuthorType::class,$author);
+        $form->handleRequest($req);
+        if($form->isSubmitted()){
         $em->persist($author);
         $em->flush();
         return $this->redirectToRoute('app_author_getall');
+        }
+        return $this->render('formAuthor.html.twig',[
+            'f'=>$form
+        ]);
     }
 
     #[Route('/author/update/{id}',name:'app_author_update')]

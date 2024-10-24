@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{# {{form(f)}} #}
+{% block body %}
+{{ form_start(f) }}
+
+{{form_label(f.name,"Name of author :")}}
+{{form_widget(f.name)}}
+
+{{form_label(f.email,"Email of author :")}}
+{{form_widget(f.email)}}
+
+{{form_widget(f.Submit,{'attr':{'class':'btn btn-primary'}})}}
+{{ form_end(f) }}
+{% endblock %}

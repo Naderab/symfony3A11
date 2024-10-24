@@ -10,12 +10,14 @@
 
 <div class="example-wrapper">
   <a href="{{path('app_book_add')}}">Add Book</a>
+  {{form(f)}}
 <table>
   <tr>
     <th>Id</th>
     <th>Title</th>
     <th>Publication Date</th>
     <th>Enabled</th>
+    <th>Author</th>
   </tr>
   {% for a in books %}
     <tr>
@@ -23,6 +25,7 @@
       <td>{{a.title}}</td>
       <td>{{a.publicationDate | date}}</td>
       <td>{{a.enabled}}</td>
+      <td>{{a.idAuthor}}</td>
 
       <td>
            <a href="{{path('app_book_update',{id:a.id})}}">
@@ -35,5 +38,35 @@
     </tr>
   {% endfor %}
 </table>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Publication Date</th>
+    <th>Enabled</th>
+    <th>Author</th>
+  </tr>
+  {% for a in b %}
+    <tr>
+      <td>{{a.id}}</td>
+      <td>{{a.title}}</td>
+      <td>{{a.publicationDate | date}}</td>
+      <td>{{a.enabled}}</td>
+      <td>{{a.idAuthor}}</td>
+
+      <td>
+        <a href="{{path('app_book_update',{id:a.id})}}">
+          Update</a>
+      </td>
+      <td>
+        <a href="{{path('app_book_delete',{id:a.id})}}">Remove</a>
+      </td>
+
+    </tr>
+  {% endfor %}
+</table>
+
+Nombre Books = {{nb}}
 </div>
 {% endblock %}
