@@ -13,7 +13,8 @@ class GetByTitleType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('Submit',SubmitType::class)
+            ->add('Submit',
+            SubmitType::class)
         ;
     }
 

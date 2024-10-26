@@ -19,11 +19,13 @@ class BookController extends AbstractController
     #[Route("/book/get/all",name:'app_book_getall')]
     public function getAllbooks(BookRepository $repo) {
         $books= $repo->findAll();
-        $form=$this->createForm(GetByTitleType::class);
+        $form=$this->
+        createForm(GetByTitleType::class);
         $booksOrdred = $repo->getBooksOrdredByTitle();
         $nb = $repo->getNbBooks();
         return $this->render('book/index.html.twig',
-        ['books'=>$books,'b'=>$booksOrdred,'nb'=>$nb,'f'=>$form]);
+        ['books'=>$books,
+        'b'=>$booksOrdred,'nb'=>$nb,'f'=>$form]);
     }
 
     #[Route('/book/add',name:'app_book_add')]
